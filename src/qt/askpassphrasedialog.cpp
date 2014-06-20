@@ -30,28 +30,28 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
         case Encrypt: // Ask passphrase x2
             ui->passLabel1->hide();
             ui->passEdit1->hide();
-            ui->warningLabel->setText(tr("Enter the new passphrase to the stash.<br/>Please use a passphrase of <b>10 or more random characters</b>, or <b>eight or more words</b>."));
-            setWindowTitle(tr("Encrypt stash"));
+            ui->warningLabel->setText(tr("Enter the new passphrase to the wallet.<br/>Please use a passphrase of <b>10 or more random characters</b>, or <b>eight or more words</b>."));
+            setWindowTitle(tr("Encrypt wallet"));
             break;
         case Unlock: // Ask passphrase
-            ui->warningLabel->setText(tr("This operation needs your passphrase to unlock the stash."));
+            ui->warningLabel->setText(tr("This operation needs your passphrase to unlock the wallet."));
             ui->passLabel2->hide();
             ui->passEdit2->hide();
             ui->passLabel3->hide();
             ui->passEdit3->hide();
-            setWindowTitle(tr("Unlock stash"));
+            setWindowTitle(tr("Unlock wallet"));
             break;
         case Decrypt:   // Ask passphrase
-            ui->warningLabel->setText(tr("This operation needs your passphrase to decrypt the stash."));
+            ui->warningLabel->setText(tr("This operation needs your passphrase to decrypt the wallet."));
             ui->passLabel2->hide();
             ui->passEdit2->hide();
             ui->passLabel3->hide();
             ui->passEdit3->hide();
-            setWindowTitle(tr("Decrypt stash"));
+            setWindowTitle(tr("Decrypt wallet"));
             break;
         case ChangePass: // Ask old passphrase + new passphrase x2
             setWindowTitle(tr("Change passphrase"));
-            ui->warningLabel->setText(tr("Enter the old and new passphrase to the stash."));
+            ui->warningLabel->setText(tr("Enter the old and new passphrase to the wallet."));
             break;
     }
 
@@ -97,8 +97,8 @@ void AskPassphraseDialog::accept()
             // Cannot encrypt with empty passphrase
             break;
         }
-        QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm stash encryption"),
-                 tr("WARNING: If you encrypt your stash and lose your passphrase, you will <b>LOSE ALL OF YOUR ZEDCOIN</b>!\nAre you sure you wish to encrypt your wallet?"),
+        QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm wallet encryption"),
+                 tr("WARNING: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR ZEDCOIN</b>!\nAre you sure you wish to encrypt your wallet?"),
                  QMessageBox::Yes|QMessageBox::Cancel,
                  QMessageBox::Cancel);
         if(retval == QMessageBox::Yes)
@@ -107,20 +107,20 @@ void AskPassphraseDialog::accept()
             {
                 if(model->setWalletEncrypted(true, newpass1))
                 {
-                    QMessageBox::warning(this, tr("Stash encrypted"),
-                                         tr("ZedCoin will close now to finish the encryption process. Remember that encrypting your stash cannot fully protect your zedcoins from being stolen by malware infecting your computer."));
+                    QMessageBox::warning(this, tr("Wallet encrypted"),
+                                         tr("ZedCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your zedcoins from being stolen by malware infecting your computer."));
                     QApplication::quit();
                 }
                 else
                 {
-                    QMessageBox::critical(this, tr("Stash encryption failed"),
-                                         tr("Stash encryption failed due to an internal error. Your stash was not encrypted."));
+                    QMessageBox::critical(this, tr("Wallet encryption failed"),
+                                         tr("Wallet encryption failed due to an internal error. Your wallet was not encrypted."));
                 }
                 QDialog::accept(); // Success
             }
             else
             {
-                QMessageBox::critical(this, tr("Stash encryption failed"),
+                QMessageBox::critical(this, tr("Wallet encryption failed"),
                                      tr("The supplied passphrases do not match."));
             }
         }
@@ -132,8 +132,8 @@ void AskPassphraseDialog::accept()
     case Unlock:
         if(!model->setWalletLocked(false, oldpass))
         {
-            QMessageBox::critical(this, tr("Stash unlock failed"),
-                                  tr("The passphrase entered for the stash decryption was incorrect."));
+            QMessageBox::critical(this, tr("Wallet unlock failed"),
+                                  tr("The passphrase entered for the wallet decryption was incorrect."));
         }
         else
         {
@@ -143,8 +143,8 @@ void AskPassphraseDialog::accept()
     case Decrypt:
         if(!model->setWalletEncrypted(false, oldpass))
         {
-            QMessageBox::critical(this, tr("Stash decryption failed"),
-                                  tr("The passphrase entered for the stash decryption was incorrect."));
+            QMessageBox::critical(this, tr("Wallet decryption failed"),
+                                  tr("The passphrase entered for the wallet decryption was incorrect."));
         }
         else
         {
@@ -156,19 +156,19 @@ void AskPassphraseDialog::accept()
         {
             if(model->changePassphrase(oldpass, newpass1))
             {
-                QMessageBox::information(this, tr("Stash encrypted"),
-                                     tr("Stash passphrase was successfully changed."));
+                QMessageBox::information(this, tr("Wallet encrypted"),
+                                     tr("Wallet passphrase was successfully changed."));
                 QDialog::accept(); // Success
             }
             else
             {
-                QMessageBox::critical(this, tr("Stash encryption failed"),
-                                     tr("The passphrase entered for the stash decryption was incorrect."));
+                QMessageBox::critical(this, tr("Wallet encryption failed"),
+                                     tr("The passphrase entered for the wallet decryption was incorrect."));
             }
         }
         else
         {
-            QMessageBox::critical(this, tr("Stash encryption failed"),
+            QMessageBox::critical(this, tr("Wallet encryption failed"),
                                  tr("The supplied passphrases do not match."));
         }
         break;

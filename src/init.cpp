@@ -629,7 +629,7 @@ bool AppInit2()
 
     // ********************************************************* Step 7: load wallet
 
-    uiInterface.InitMessage(_("Loading stash..."));
+    uiInterface.InitMessage(_("Loading wallet..."));
     printf("Loading wallet...\n");
     nStart = GetTimeMillis();
     bool fFirstRun;

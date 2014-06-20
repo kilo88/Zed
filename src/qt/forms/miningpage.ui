@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Loot</string>
+   <string>Mining</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="sizeConstraint">
@@ -89,7 +89,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Start Looting</string>
+      <string>Start Mining</string>
      </property>
     </widget>
    </item>
@@ -217,12 +217,12 @@
      </property>
      <item>
       <property name="text">
-       <string>Solo Looting</string>
+       <string>Solo Mining</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Group Looting</string>
+       <string>Group Mining</string>
       </property>
      </item>
     </widget>

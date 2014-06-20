@@ -2,25 +2,13 @@
 
 - Scrypt Algorithm
 - 1 minute blocks
-- 88 coins per block
+- 88 coins per block, halving to 44 then 5
 - 120 million total coins
-- Difficulty re-target every 30 blocks
-- Random x2 bonus 1day/mo
+- Difficulty re-target every 5 blocks
 - Transaction messages supported
 - Coin maturity at 30 block confirmations
-- The block payout will be halved every year, minimum payout 1 coin per block
 
-*Bonus payouts, in order to provide some incentive to early adopters.
-
-Day 1: x2 payout
-
-Day 2: x3 payout
-
-Day 3: x5 payout
-
-Day 11: x2 payout
-
-Day 22: x2 payout
+*Fork at block 97000
 
 Ports
 -----

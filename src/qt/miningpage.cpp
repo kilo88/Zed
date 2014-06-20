@@ -212,16 +212,16 @@ void MiningPage::minerError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart)
     {
-        reportToList("Loot fail. Make sure you have the minerd executable and libraries in the same directory as ZedCoin-Qt.", ERROR, NULL);
+        reportToList("Mining fail. Make sure you have the minerd executable and libraries in the same directory as ZedCoin-Qt.", ERROR, NULL);
     }
 }
 
 void MiningPage::minerFinished()
 {
     if (getMiningType() == ClientModel::SoloMining)
-        reportToList("Solo looting stopped.", ERROR, NULL);
+        reportToList("Solo mining stopped.", ERROR, NULL);
     else
-        reportToList("Loot exit.", ERROR, NULL);
+        reportToList("Mining exit.", ERROR, NULL);
     ui->list->addItem("");
     minerActive = false;
     resetMiningButton();
@@ -232,9 +232,9 @@ void MiningPage::minerStarted()
 {
     if (!minerActive)
         if (getMiningType() == ClientModel::SoloMining)
-            reportToList("Solo looting started.", ERROR, NULL);
+            reportToList("Solo mining started.", ERROR, NULL);
         else
-            reportToList("Looting started. You might not see any output for a few minutes.", STARTED, NULL);
+            reportToList("Mining started. You might not see any output for a few minutes.", STARTED, NULL);
     minerActive = true;
     resetMiningButton();
     model->setMining(getMiningType(), true, initThreads, 0);
@@ -381,6 +381,6 @@ void MiningPage::debugToggled(bool checked)
 
 void MiningPage::resetMiningButton()
 {
-    ui->startButton->setText(minerActive ? "Stop Looting" : "Start Looting");
+    ui->startButton->setText(minerActive ? "Stop Mining" : "Start Mining");
     enableMiningControls(!minerActive);
 }
